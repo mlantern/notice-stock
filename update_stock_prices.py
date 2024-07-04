@@ -14,7 +14,7 @@ client = Quotes.factory(market='std')  # 使用标准市场（市场: 'std' or '
 
 # 获取股票实时价格
 def get_stock_price(symbol):
-    data = client.quote(symbol)
+    data = client.quotes(symbol)
     if not data.empty:
         return data['price'][0]
     else:
