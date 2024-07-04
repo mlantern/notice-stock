@@ -17,6 +17,7 @@ client = Quotes.factory(market='std')  # 使用标准市场（市场: 'std' or '
 # 获取股票实时价格及其他信息
 def get_stock_info(symbol):
     data = client.quotes(symbol)
+    print(f"Data for {symbol}: {data}")  # 打印数据以调试
     if not data.empty:
         return {
             'price': data['price'][0],
