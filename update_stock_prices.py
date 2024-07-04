@@ -21,7 +21,6 @@ def get_stock_info(symbol):
     if not data.empty:
         return {
             'price': data['price'][0],
-            'name': data['name'][0],
             'symbol': data['symbol'][0]
         }
     else:
@@ -52,16 +51,6 @@ def update_stock_info():
                     "当前价格": {
                         "number": stock_info['price']
                     },
-                    "股票名称": {
-                        "rich_text": [
-                            {
-                                "type": "text",
-                                "text": {
-                                    "content": stock_info['name']
-                                }
-                            }
-                        ]
-                    }
                 }
             )
         else:
