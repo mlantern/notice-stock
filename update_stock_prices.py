@@ -21,7 +21,7 @@ def get_stock_info(symbol):
     if not data.empty:
         return {
             'price': data['price'][0],
-            'symbol': data['symbol'][0]
+            'symbol': symbol
         }
     else:
         return None
