@@ -17,7 +17,7 @@ client = Quotes.factory(market='std')  # 使用标准市场（市场: 'std' or '
 # 获取股票实时价格及其他信息
 def get_stock_info(symbol):
     data = client.quotes(symbol)
-    print(f"Data for {symbol}: {data}")  # 打印数据以调试
+    # print(f"Data for {symbol}: {data}")  # 打印数据以调试
     if not data.empty:
         return {
             'price': data['price'][0],
@@ -31,7 +31,7 @@ def update_stock_info():
     response = notion.databases.query(database_id=database_id)
     for page in response["results"]:
         properties = page["properties"]
-        print("Properties:", properties)  # 调试打印属性名称
+        # print("Properties:", properties)  # 调试打印属性名称
 
         # 检查并提取股票代码
         if "股票代码" in properties and properties["股票代码"]["title"]:
