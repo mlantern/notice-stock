@@ -49,7 +49,7 @@ def update_stock_info():
                 page_id=page["id"],
                 properties={
                     "当前价格": {
-                        "number": stock_info['price']
+                        "number": round(stock_info['price'], 2)
                     },
                 }
             )
