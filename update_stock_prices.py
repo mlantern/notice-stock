@@ -1,24 +1,22 @@
 import os
-import tushare as ts
+from mootdx.quotes import Quotes
 from notion_client import Client
 
 # 从环境变量中获取密钥
 notion_api_key = os.getenv("NOTION_API_KEY")
-tushare_api_key = os.getenv("TUSHARE_API_KEY")
 database_id = os.getenv("DATABASE_ID")
-
-# 设置 Tushare API 客户端
-ts.set_token(tushare_api_key)
-pro = ts.pro_api()
 
 # 设置 Notion API 客户端
 notion = Client(auth=notion_api_key)
 
+# 设置 MooTDX Quotes 客户端
+client = Quotes.factory(market='std')  # 使用标准市场（市场: 'std' or 'ext'）
+
 # 获取股票实时价格
 def get_stock_price(symbol):
-    df = pro.daily(ts_code=symbol)
-    if not df.empty:
-        return df.iloc[0]['close']
+    data = client.quote(symbol)
+    if not data.empty:
+        return data['price'][0]
     else:
         return None
 
